@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: caiocunha-playlist-recommender-deploy
+  namespace: caiocunha
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: caiocunha-playlist-recommender
+  template:
+    metadata:
+      labels:
+        app: caiocunha-playlist-recommender
+    spec:
+      containers:
+      - name: caiocunha-playlist-recommender
+        image: quay.io/cunha/caiocunha-playlist-recommender:11aec25
+        ports:
+        - containerPort: 50033
+        volumeMounts:
+        - mountPath: /data
+          name: persistent-storage
+      volumes:
+      - name: persistent-storage
+        persistentVolumeClaim:
+          claimName: project2-pv2-caiocunha

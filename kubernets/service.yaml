@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: caiocunha-playlist-recommender-service
+  namespace: caiocunha
+spec:
+  selector:
+    app: caiocunha-playlist-recommender
+  ports:
+    - protocol: TCP
+      port: 50033
+      targetPort: 50033
