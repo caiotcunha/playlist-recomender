@@ -16,7 +16,6 @@ def hello_world():
 def recommend():
     
     data = request.get_json()
-    data = json.loads(data)
     songsSet = set(data["songs"])
 
     recommendations = []
