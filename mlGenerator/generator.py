@@ -1,8 +1,9 @@
 from fpgrowth_py import fpgrowth
 import pandas as pd
 import pickle
+import os
 
-datapath = "/home/datasets/spotify/2023_spotify_ds1.csv"
+datapath = os.getenv("DATASET")
 
 dataset = pd.read_csv(datapath)
 

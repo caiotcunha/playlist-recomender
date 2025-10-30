@@ -3,7 +3,7 @@ import json
 import pickle
 
 app = Flask(__name__)
-app.model = pickle.load(open('./model.pickle', 'rb'))
+app.model = pickle.load(open('/app/model.pickle', 'rb'))
 
 @app.route("/")
 def hello_world():
@@ -28,3 +28,6 @@ def recommend():
         'model_date': '2025-10-28'
     }
     return jsonify(response)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=50033)
