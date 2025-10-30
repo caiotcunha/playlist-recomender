@@ -1,9 +1,12 @@
 from flask import Flask, request, jsonify
 import json
 import pickle
+import os
+
+modelpath = os.getenv("MODELPATH")
 
 app = Flask(__name__)
-app.model = pickle.load(open('/app/model.pickle', 'rb'))
+app.model = pickle.load(open(modelpath, 'rb'))
 
 @app.route("/")
 def hello_world():

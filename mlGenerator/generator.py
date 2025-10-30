@@ -11,4 +11,4 @@ playlist_list = dataset.groupby('pid')['track_name'].apply(list).tolist()
 
 freqItemSet, rules = fpgrowth(playlist_list, minSupRatio=0.1, minConf=0.5)
 
-pickle.dump( rules, open( "model.pickle", "wb" ) )
+pickle.dump( rules, open( "/data/model.pickle", "wb" ) )

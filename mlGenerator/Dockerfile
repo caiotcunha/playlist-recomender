@@ -6,5 +6,6 @@ COPY . /app
 
 RUN pip install --no-cache-dir -r requirements.txt
 
+RUN mkdir -p /data
 
-CMD ["python3", "./app.py"]
+CMD ["python3", "./generator.py"]
