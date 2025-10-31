@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: project2-pv2-caiocunha
+  name: project2-pv-caiocunha
   namespace: caiocunha
 spec:
   storageClassName: default-storage-class-caiocunha
@@ -13,3 +13,5 @@ spec:
   selector:
     matchLabels:
       namespace: caiocunha
+      type: local
+  volumeName: project2-pv-caiocunha

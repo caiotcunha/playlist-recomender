@@ -2,6 +2,8 @@ from fpgrowth_py import fpgrowth
 import pandas as pd
 import pickle
 import os
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 
 datapath = os.getenv("DATASET")
 

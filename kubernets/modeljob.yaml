@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mlgenerator-job-v1
+  namespace: caiocunha
+spec:
+  template:
+    metadata:
+      labels:
+        app: model-caiocunha
+    spec:
+      containers:
+      - name: mlgenerator-container
+        image: caiotcunha/playlist-recomender-mlgenerator:0.1
+        env:
+        - name: DATASET
+          value: "https://homepages.dcc.ufmg.br/~cunha/hosted/cloudcomp-2023s2-datasets/2023_spotify_ds1.csv"
+        volumeMounts:
+          - name: persistent-storage
+            mountPath: /data
+      volumes:
+      - name: persistent-storage
+        persistentVolumeClaim:
+          claimName: project2-pv-caiocunha
+      restartPolicy: Never
+  backoffLimit: 4

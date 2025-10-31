@@ -4,7 +4,7 @@ metadata:
   name: caiocunha-playlist-recommender-deploy
   namespace: caiocunha
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: caiocunha-playlist-recommender
@@ -14,8 +14,12 @@ spec:
         app: caiocunha-playlist-recommender
     spec:
       containers:
-      - name: caiocunha-playlist-recommender
-        image: quay.io/cunha/caiocunha-playlist-recommender:11aec25
+      - name: caiocunha-playlist-recommender-server
+        image: caiotcunha/playlist-recomender-server:0.1
+        imagePullPolicy: Always
+        env:
+          - name: MODELPATH
+            value: /data/model.pickle
         ports:
         - containerPort: 50033
         volumeMounts:
@@ -24,4 +28,4 @@ spec:
       volumes:
       - name: persistent-storage
         persistentVolumeClaim:
-          claimName: project2-pv2-caiocunha
+          claimName: project2-pv-caiocunha
