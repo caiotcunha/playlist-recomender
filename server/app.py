@@ -7,7 +7,6 @@ modelpath = os.getenv("MODELPATH",)
 version = os.getenv("APP_VERSION", "1.0.0")
 
 app = Flask(__name__)
-app.model = pickle.load(open(modelpath, 'rb'))
 
 @app.route("/")
 def hello_world():
@@ -16,6 +15,7 @@ def hello_world():
 @app.route("/api/recommend", methods=["POST"])
 def recommend():
     #print(app.model["rules"])
+    app.model = pickle.load(open(modelpath, 'rb'))
     
     data = request.get_json()
     songsSet = set(data["songs"])
