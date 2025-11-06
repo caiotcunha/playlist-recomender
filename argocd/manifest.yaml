@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: caio-project 
+  namespace: argocd
+spec:
+  project: caiocunha-project
+  source:
+    repoURL: https://github.com/caiotcunha/playlist-recommender.git
+    path: k8s/
+    targetRevision: HEAD
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: caiocunha
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

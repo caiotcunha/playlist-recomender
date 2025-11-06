@@ -20,6 +20,8 @@ spec:
         env:
           - name: MODELPATH
             value: /data/model.pickle
+          - name: APP_VERSION
+            value: "1.0.0"
         ports:
         - containerPort: 50033
         volumeMounts:

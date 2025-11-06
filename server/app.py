@@ -3,7 +3,8 @@ import json
 import pickle
 import os
 
-modelpath = os.getenv("MODELPATH")
+modelpath = os.getenv("MODELPATH",)
+version = os.getenv("APP_VERSION", "1.0.0")
 
 app = Flask(__name__)
 app.model = pickle.load(open(modelpath, 'rb'))
@@ -14,20 +15,20 @@ def hello_world():
 
 @app.route("/api/recommend", methods=["POST"])
 def recommend():
+    #print(app.model["rules"])
     
     data = request.get_json()
     songsSet = set(data["songs"])
 
     recommendations = []
-    for antecedent, consequent, confid in app.model:
+    for antecedent, consequent, confid in app.model["rules"]:
         if antecedent.issubset(songsSet):
             recommendations.extend(consequent)
 
     response = {
         'songs': list(set(recommendations)),
-        #TODO: deve ser dinamico
-        'version': '1.0.0',
-        'model_date': '2025-10-28'
+        'version': version,
+        'model_date': app.model["updated_at"]
     }
     return jsonify(response)
 
