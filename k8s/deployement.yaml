@@ -4,7 +4,7 @@ metadata:
   name: caiocunha-playlist-recommender-deploy
   namespace: caiocunha
 spec:
-  replicas: 5
+  replicas: 1
   selector:
     matchLabels:
       app: caiocunha-playlist-recommender
@@ -21,7 +21,7 @@ spec:
           - name: MODELPATH
             value: /data/model.pickle
           - name: APP_VERSION
-            value: "1.0.2"
+            value: "1.0.3"
         ports:
         - containerPort: 50033
         volumeMounts:
